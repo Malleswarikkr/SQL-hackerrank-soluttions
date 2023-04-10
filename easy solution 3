@@ -1,0 +1,57 @@
+problem:Query a count of the number of cities in CITY having a Population larger than .
+solutions:select count(name) from city  where population >100000.
+
+probleam:
+Query the total population of all cities in CITY where District is California.
+solution:
+select sum(population) from city where district='California'
+problem:
+Query the average population of all cities in CITY where District is California.
+solution:
+select avg(population) from city where district='California'
+problem:
+Query the average population for all cities in CITY, rounded down to the nearest integer.
+solution:
+select round(avg(population)) from city 
+problem:
+Query the sum of the populations for all Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
+solution:
+select sum(population) from city where countrycode='JPN'
+problem:
+Query the difference between the maximum and minimum populations in CITY
+solution:
+select max(population)-min(population) from city
+problem:
+Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until
+after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average
+salary.
+Write a query calculating the amount of error (i.e.:  average monthly salaries), and round it up to the next integer.
+Solution:
+select CEILING(avg(salary)-avg(replace(salary,0,""))) from employees
+problem:
+We define an employee's total earnings to be their monthly  worked, and the maximum total earnings to be the maximum total earnings for any employee in the
+Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings.
+Then print these values as  space-separated integers.
+solutions:
+select max(months*salary),count(months*salary) as tot from employee group by  months*salary 
+order by months*salary desc limit 1
+problem:
+Query the following two values from the STATION table:
+
+The sum of all values in LAT_N rounded to a scale of  decimal places.
+The sum of all values in LONG_W rounded to a scale of  decimal places.
+solution:
+select round(sum(lat_n),2),round(sum(long_w),2) from station 
+problem:
+Query the sum of Northern Latitudes (LAT_N) from STATION having values greater than  and less than . Truncate your answer to  decimal places.
+solution:
+select truncate(sum(lat_n),4) as s from station where lat_n>38.7880 and lat_n<137.2345
+problem:
+Query the greatest value of the Northern Latitudes (LAT_N) from STATION that is less than . Truncate your answer to  decimal places.
+solutions:
+select truncate(max(lat_n),4) from station where  lat_n<137.2345
+probleam:
+Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in STATION that is less than . Round your answer to  decimal places.
+solution:
+select round(long_w,4) from station where lat_n<137.2345  order by lat_n desc  limit 1
+problem:
